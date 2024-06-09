@@ -26,7 +26,7 @@ void exibirMenu() {
     cout << "|  (2) RELATORIOS                                                    |" << endl;
     cout << "|      a) Registros ordenados por titulo                             |" << endl;
     cout << "|      b) Registros ordenados por canal/streaming                    |" << endl;
-    cout << "|      C) Registros ordenados por ano                                |" << endl;
+    cout << "|      c) Registros ordenados por ano                                |" << endl;
     cout << "|      d) Registros ordenados por nota                               |" << endl;
     cout << "|                                                                    |" << endl;
     cout << " --------------------------------------------------------------------" << endl;
@@ -66,6 +66,7 @@ void incluirSerie(PersistenciaBanco& persistencia) {
 
     Serie novaSerie(0, series_name, release_year, season, episode_count, main_actors, main_characters, network, rating);
     persistencia.salvarSerie(novaSerie);
+    cout << "\nSerie incluida!!" << endl;
 }
 
 void recuperarSerie(PersistenciaBanco& persistencia) {
