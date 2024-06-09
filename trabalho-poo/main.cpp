@@ -7,44 +7,57 @@
 #include "PersistenciaBanco.h"
 
 void exibirMenu() {
-    std::cout << "Menu Principal:" << endl;
-    std::cout << "1. Series" << endl;
-    std::cout << "   a) Incluir um novo registro" << endl;
-    std::cout << "   b) Recuperar um registro" << endl;
-    std::cout << "   c) Editar um registro" << endl;
-    std::cout << "   d) Excluir um registro" << endl;
-    std::cout << "2. Relatorios" << endl;
-    std::cout << "   a) Registros ordenados por título" << endl;
-    std::cout << "   b) Registros ordenados por canal/streaming" << endl;
-    std::cout << "   c) Registros ordenados por ano" << endl;
-    std::cout << "   d) Registros ordenados por nota" << endl;
-    std::cout << "3. Ajuda" << endl;
-    std::cout << "4. Creditos" << endl;
-    std::cout << "5. Sair" << endl;
+    cout << " --------------------------------------------------------------------" << endl;
+    cout << "|                           MENU PRINCIPAL                           |" << endl;
+    cout << " --------------------------------------------------------------------" << endl;
+    cout << "|                                                                    |" << endl;
+    cout << "|  (1) SERIES                                                        |" << endl;
+    cout << "|      a) Incluir um novo registro                                   |" << endl;
+    cout << "|      b) Recuperar um registro                                      |" << endl;
+    cout << "|      c) Editar um registro                                         |" << endl;
+    cout << "|      d) Excluir um registro                                        |" << endl;
+    cout << "|                                                                    |" << endl;
+    cout << " --------------------------------------------------------------------" << endl;
+    cout << "|                                                                    |" << endl;
+    cout << "|  (2) RELATORIOS                                                    |" << endl;
+    cout << "|      a) Registros ordenados por titulo                             |" << endl;
+    cout << "|      b) Registros ordenados por canal/streaming                    |" << endl;
+    cout << "|      C) Registros ordenados por ano                                |" << endl;
+    cout << "|      d) Registros ordenados por nota                               |" << endl;
+    cout << "|                                                                    |" << endl;
+    cout << " --------------------------------------------------------------------" << endl;
+    cout << "|                                                                    |" << endl;
+    cout << "|  (3) AJUDA                                                         |" << endl;
+    cout << "|  (4) CREDITOS                                                      |" << endl;
+    cout << "|  (5) SAIR                                                          |" << endl;
+    cout << "|                                                                    |" << endl;
+    cout << " --------------------------------------------------------------------" << endl;
 }
 
 void incluirSerie(PersistenciaBanco& persistencia) {
     int release_year, season, episode_count, rating;
     string series_name, main_actors, main_characters, network;
 
-    std::cout << "Incluir Nova Serie:" << endl;
-    std::cout << "Nome da Serie: ";
+    cout << " --------------------------------------------------------------------" << endl;
+    cout << "|                        INCLUIR NOVA SERIE                          |" << endl;
+    cout << " --------------------------------------------------------------------" << endl;
+    cout << "- Nome da Serie: ";
     cin.ignore();
     getline(cin, series_name);
-    std::cout << "Ano de Lancamento: ";
+    cout << "- Ano de Lancamento: ";
     cin >> release_year;
-    std::cout << "Temporada: ";
+    cout << "- Temporada: ";
     cin >> season;
-    std::cout << "Numero de Episodios: ";
+    cout << "- Numero de episodios: ";
     cin >> episode_count;
-    std::cout << "Atores Principais: ";
+    cout << "- Atores principais: ";
     cin.ignore();
     getline(cin, main_actors);
-    std::cout << "Personagens Principais: ";
+    cout << "- Personagens principais: ";
     getline(cin, main_characters);
-    std::cout << "Canal/Streaming: ";
+    cout << "- Canal/Streaming: ";
     getline(cin, network);
-    std::cout << "Nota: ";
+    cout << "- Nota: ";
     cin >> rating;
 
     Serie novaSerie(0, series_name, release_year, season, episode_count, main_actors, main_characters, network, rating);
@@ -53,30 +66,35 @@ void incluirSerie(PersistenciaBanco& persistencia) {
 
 void recuperarSerie(PersistenciaBanco& persistencia) {
     int internal_id;
-    std::cout << "Recuperar Serie:" << endl;
-    std::cout << "ID da Serie: ";
+    cout << " --------------------------------------------------------------------" << endl;
+    cout << "|                         RECUPERAR SERIE                            |" << endl;
+    cout << " --------------------------------------------------------------------" << endl;
+    cout << "- ID da Serie: ";
     cin >> internal_id;
 
     Serie* serie = persistencia.carregarSerie(internal_id);
     if (serie) {
-        std::cout << "Serie carregada: " << serie->getSeriesName() << endl;
-        std::cout << "Ano de lancamento: " << serie->getReleaseYear() << endl;
-        std::cout << "Temporada: " << serie->getSeason() << endl;
-        std::cout << "Numero de episodios: " << serie->getEpisodeCount() << endl;
-        std::cout << "Atores principais: " << serie->getMainActors() << endl;
-        std::cout << "Personagens principais: " << serie->getMainCharacters() << endl;
-        std::cout << "Canal/Streaming: " << serie->getNetwork() << endl;
-        std::cout << "Nota: " << serie->getRating() << endl;
+        cout << " --------------------------------------------------------------------" << endl;
+        cout << "****** SERIE " << internal_id << " *******" << endl;
+        cout << "Serie carregada: " << serie->getSeriesName() << endl;
+        cout << "Ano de lancamento: " << serie->getReleaseYear() << endl;
+        cout << "Temporada: " << serie->getSeason() << endl;
+        cout << "Numero de episodios: " << serie->getEpisodeCount() << endl;
+        cout << "Atores principais: " << serie->getMainActors() << endl;
+        cout << "Personagens principais: " << serie->getMainCharacters() << endl;
+        cout << "Canal/streaming: " << serie->getNetwork() << endl;
+        cout << "Nota: " << serie->getRating() << endl;
+        cout << "\n\n";
     }
     else {
-        std::cout << "Serie nao encontrada." << endl;
+        cout << "Serie nao encontrada." << endl;
     }
 }
 
 void editarSerie(PersistenciaBanco& persistencia) {
     int internal_id;
-    std::cout << "Editar Serie:" << endl;
-    std::cout << "ID da Serie: ";
+    cout << "Editar Serie:" << endl;
+    cout << "ID da Serie: ";
     cin >> internal_id;
 
     Serie* serie = persistencia.carregarSerie(internal_id);
@@ -84,23 +102,23 @@ void editarSerie(PersistenciaBanco& persistencia) {
         int release_year, season, episode_count, rating;
         string series_name, main_actors, main_characters, network;
 
-        std::cout << "Novo Nome da Serie (atual: " << serie->getSeriesName() << "): ";
+        cout << "Novo Nome da Serie (atual: " << serie->getSeriesName() << "): ";
         cin.ignore();
         getline(cin, series_name);
-        std::cout << "Novo Ano de Lancamento (atual: " << serie->getReleaseYear() << "): ";
+        cout << "Novo Ano de Lancamento (atual: " << serie->getReleaseYear() << "): ";
         cin >> release_year;
-        std::cout << "Nova Temporada (atual: " << serie->getSeason() << "): ";
+        cout << "Nova Temporada (atual: " << serie->getSeason() << "): ";
         cin >> season;
-        std::cout << "Novo Numero de Episodios (atual: " << serie->getEpisodeCount() << "): ";
+        cout << "Novo Numero de Episodios (atual: " << serie->getEpisodeCount() << "): ";
         cin >> episode_count;
-        std::cout << "Novos Atores Principais (atual: " << serie->getMainActors() << "): ";
+        cout << "Novos Atores Principais (atual: " << serie->getMainActors() << "): ";
         cin.ignore();
         getline(cin, main_actors);
-        std::cout << "Novos Personagens Principais (atual: " << serie->getMainCharacters() << "): ";
+        cout << "Novos Personagens Principais (atual: " << serie->getMainCharacters() << "): ";
         getline(cin, main_characters);
-        std::cout << "Novo Canal/Streaming (atual: " << serie->getNetwork() << "): ";
+        cout << "Novo Canal/Streaming (atual: " << serie->getNetwork() << "): ";
         getline(cin, network);
-        std::cout << "Nova Nota (atual: " << serie->getRating() << "): ";
+        cout << "Nova Nota (atual: " << serie->getRating() << "): ";
         cin >> rating;
 
         serie->setSeriesName(series_name);
@@ -115,7 +133,7 @@ void editarSerie(PersistenciaBanco& persistencia) {
         persistencia.salvarSerie(*serie);
     }
     else {
-        std::cout << "Serie nao encontrada." << endl;
+        cout << "Serie nao encontrada." << endl;
     }
 }
 
@@ -156,9 +174,15 @@ void relatorios(SerieDAO& persistencia, char opcao) {
         return;
     }
 
+    cout << " --------------------------------------------------------------------" << endl;
+    cout << "|                        CATALOGO DE SERIES                          |" << endl;
+    cout << " --------------------------------------------------------------------" << endl;
+
     for (const auto& serie : series) {
-        cout << "ID: " << serie.getInternalId() << ", Nome: " << serie.getSeriesName() << ", Ano: " << serie.getReleaseYear() << ", Temporada: " << serie.getSeason() << ", Episódios: " << serie.getEpisodeCount() << ", Canal/Streaming: " << serie.getNetwork() << ", Nota: " << serie.getRating() << endl;
+        cout << "ID: " << serie.getInternalId() << ", Nome: " << serie.getSeriesName() << ", Ano: " << serie.getReleaseYear() << ", Temporada: " << serie.getSeason() << ", Episodios: " << serie.getEpisodeCount() << ", Canal/Streaming: " << serie.getNetwork() << ", Nota: " << serie.getRating() << endl;
     }
+
+    cout << "\n\n" << endl;
 }
 
 int main() {
@@ -173,13 +197,13 @@ int main() {
     char opcao;
     do {
         exibirMenu();
-        std::cout << "Escolha uma opcao: ";
+        cout << "\nEscolha uma opcao (1-5): ";
         cin >> opcao;
 
         switch (opcao) {
         case '1':
             char subOpcao;
-            std::cout << "Escolha uma subopcao: ";
+            cout << "Escolha uma sub-opcao (a-d): ";
             cin >> subOpcao;
             switch (subOpcao) {
             case 'a':
@@ -195,26 +219,26 @@ int main() {
                 excluirSerie(persistencia);
                 break;
             default:
-                std::cout << "Opcao invalida!" << endl;
+                cout << "Opcao invalida!" << endl;
                 break;
             }
             break;
         case '2':
-            std::cout << "Escolha uma subopcao: ";
+            cout << "Escolha uma sub-opcao: ";
             cin >> opcao;
             relatorios(persistencia, opcao);
             break;
         case '3':
-            std::cout << "Ajuda: Utilize as opcões do menu para interagir com o sistema." << endl;
+            cout << "Ajuda: Utilize as opcoes do menu para interagir com o sistema." << endl;
             break;
         case '4':
-            std::cout << "Creditos: Desenvolvido por Heloisa, Camila, Geovanne, Thalita e Gaby." << endl;
+            cout << "Creditos: Desenvolvido por Heloisa, Camila, Geovanne, Thalita e Gaby." << endl;
             break;
         case '5':
-            std::cout << "Saindo..." << endl;
+            cout << "Saindo..." << endl;
             break;
         default:
-            std::cout << "Opcao invalida!" << endl;
+            cout << "Opcao invalida!" << endl;
             break;
         }
     } while (opcao != '5');
