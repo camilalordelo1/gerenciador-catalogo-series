@@ -28,6 +28,28 @@ void PersistenciaBanco::salvarSerie(const Serie& serie) {
     }
 }
 
+void PersistenciaBanco::atualizarSerie(const Serie& serie) {
+    try {
+        unique_ptr<sql::PreparedStatement> pstmt(conn->prepareStatement(
+            "UPDATE series SET series_name = ?, release_year = ?, season = ?, episode_count = ?, main_actors = ?, main_characters = ?, network = ?, rating = ? "
+            "WHERE internal_id = ?"));
+        pstmt->setString(1, serie.getSeriesName());
+        pstmt->setInt(2, serie.getReleaseYear());
+        pstmt->setInt(3, serie.getSeason());
+        pstmt->setInt(4, serie.getEpisodeCount());
+        pstmt->setString(5, serie.getMainActors());
+        pstmt->setString(6, serie.getMainCharacters());
+        pstmt->setString(7, serie.getNetwork());
+        pstmt->setInt(8, serie.getRating());
+        pstmt->setInt(9, serie.getInternalId());
+        pstmt->execute();
+    }
+    catch (sql::SQLException& e) {
+        std::cerr << "SQLException: " << e.what() << std::endl;
+    }
+}
+
+
 void PersistenciaBanco::removerSerie(int internal_id) {
     try {
         unique_ptr<sql::PreparedStatement> pstmt(conn->prepareStatement("DELETE FROM series WHERE internal_id = ?"));

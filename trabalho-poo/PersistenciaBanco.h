@@ -19,6 +19,7 @@ public:
     void salvarSerie(const Serie& serie) override;
     void removerSerie(int internal_id) override;
     Serie* carregarSerie(int internal_id) override;
+    void atualizarSerie(const Serie& serie);
     vector<Serie> listarSeries() override;
 };
 
