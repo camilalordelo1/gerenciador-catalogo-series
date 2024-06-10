@@ -9,6 +9,7 @@
 #include "Catalogo.h"
 #include "PersistenciaBanco.h"
 
+using namespace std;
 
 void exibirMenu() {
     cout << " --------------------------------------------------------------------" << endl;
@@ -52,7 +53,7 @@ void incluirSerie(PersistenciaBanco& persistencia) {
     cin >> release_year;
     cout << "- TEMPORADA: ";
     cin >> season;
-    cout << "- Nº DE EPISODIOS: ";
+    cout << "- NUMERO DE EPISODIOS: ";
     cin >> episode_count;
     cout << "- ATORES PRINCIPAIS: ";
     cin.ignore();
@@ -86,7 +87,7 @@ void recuperarSerie(PersistenciaBanco& persistencia) {
         cout << "- NOME: " << serie->getSeriesName() << endl;
         cout << "- ANO DE LANCAMENTO: " << serie->getReleaseYear() << endl;
         cout << "- TEMPORADA: " << serie->getSeason() << endl;
-        cout << "- Nº DE EPISODIOS: " << serie->getEpisodeCount() << endl;
+        cout << "- NUMERO DE EPISODIOS: " << serie->getEpisodeCount() << endl;
         cout << "- ATORES PRINCIPAIS: " << serie->getMainActors() << endl;
         cout << "- PERSONAGENS PRINCIPAIS: " << serie->getMainCharacters() << endl;
         cout << "- CANAL/STREAMING: " << serie->getNetwork() << endl;
@@ -180,7 +181,7 @@ void editarSerie(PersistenciaBanco& persistencia) {
             break;
         }
         default:
-            cout << "OPÇÃO INVÁLIDA!" << endl;
+            cout << "OPCAOO INVALIDA!" << endl;
             return;
         }
 
@@ -228,7 +229,7 @@ void relatorios(SerieDAO& persistencia, char opcao) {
             });
         break;
     default:
-        cout << "Opção invalida!" << endl;
+        cout << "Opcao invalida!" << endl;
         return;
     }
 
